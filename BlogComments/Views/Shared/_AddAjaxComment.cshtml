@@ -1,0 +1,42 @@
+﻿@using BlogComments.Models
+@using System.Diagnostics
+
+<div id="ajaxResultComments_@ViewBag.postId" class="comments">
+    @foreach (var c in ViewBag.Comments)
+    {
+        if (c.PostId == ViewBag.postId)
+        {
+            <div class="commentsItem">
+               <div>
+                    @{
+                        if (c.Author != null && c.UserId != null)
+                        {
+                            <strong>@c.Author</strong>
+                        }
+                        else if (c.Author != null && c.UserId == null)
+                        {
+                            <strong>@c.Author (unregistered)</strong>
+                        }
+                        else if (c.Author == null && c.UserId != null)
+                        {
+                            <strong>Guest (registered)</strong>
+                        }
+                        else
+                        {
+                            <strong>Anonimus (unregistered)</strong>
+                        }
+                    }
+                </div>
+                <small class="small">@c.Date.ToString("dd/MM/yyyy HH:mm")</small>
+                <p>@c.CommentTxt</p>
+            </div>
+        }
+    }
+
+    @if (ViewBag.CommentsCount != null)
+    {
+        <script type="text/javascript">$.updatesCommentsCounter(@ViewBag.CommentsCount, @ViewBag.postId);</script>
+    }
+    
+</div>
+

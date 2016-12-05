@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Add a post";
+}
+
+<h3>Create a new Post in your Blog</h3>
+<div class="v-margin-20">
+<form method="post" action="">
+    <input name="UserId" type="hidden" value="@ViewBag.UserId">
+    <table>
+        <tr>
+            <td>
+                <label for="Title" class="sr-only">Post title</label>
+                <input type="text" class="form-control" name="Title" placeholder="Post title" required="" autofocus="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="PostTxt" class="sr-only">Text</label>
+                <textarea name="PostTxt" class="form-control" placeholder="Text" cols="100" raws="200"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td><input class="btn btn-lg btn-primary v-margin-20" type="submit" value="Save" /></td>
+        </tr>
+    </table>
+</form>
+</div>
+
+
+

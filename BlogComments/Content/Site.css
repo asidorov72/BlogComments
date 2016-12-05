@@ -1,0 +1,78 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+.v-margin-5 {
+   margin: 5px 0;
+}
+
+.v-margin-10 {
+   margin: 10px 0;
+}
+
+.v-margin-20 {
+   margin: 20px 0;
+}
+
+.datetime {
+    font-size: smaller;
+
+}
+
+input,
+select,
+textarea {
+    max-width: 500px;
+}
+
+textarea.form-control {
+    height: 150px;
+}
+
+/* Blog */
+.container .jumbotron {
+    margin-top: 20px;
+}
+
+.comments {
+    display: none;
+}
+
+.commentsItem {
+   list-style-type: none;
+   padding: 10px;
+   margin: 5px 0;
+   background-color: #eeeeee;
+   border-radius: 6px !important;
+}
+
+.morecontent span {
+    display: none;
+}
+.morelink {
+    display: inline-block;
+}
+
+
+.addCommentForm {
+    display: none;
+}
+
+ 
+

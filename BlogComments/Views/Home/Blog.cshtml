@@ -1,0 +1,93 @@
+﻿@using BlogComments.Models;
+
+@{
+    ViewBag.Title = "Blog";
+}
+
+<h2>My Blog</h2>
+@{
+    if (ViewBag.UserId != null)
+    {
+        var link = Html.ActionLink(
+            linkText: "{0}",
+            actionName: "Add",
+            controllerName: "Post",
+            routeValues: new {},
+            htmlAttributes: new
+            {
+                @class = "btn btn-default"
+            }).ToString();
+
+        var addPostBtn = string.Format(link, "Create a new post");
+        @Html.Raw(addPostBtn)
+    }
+}
+
+<div class="row">
+
+    @foreach (var p in ViewBag.Posts)
+    {
+        <div class="postItem col-sm-4">
+            <h3>@p.Title</h3>
+            <p><small class="small">@p.Date.ToString("dd/MM/yyyy HH:mm")</small></p>
+            <p class="more">@p.PostTxt</p>
+            @{
+                var link = Html.ActionLink(
+                    linkText: "{0}",
+                    actionName: "Add",
+                    controllerName: "Comments",
+                    routeValues: new
+                    {
+                        PostId = @p.Id
+                    },
+                    htmlAttributes: new
+                    {
+                        @class = "AddCommentBtn"
+                    }).ToString();
+
+                var addCommentFrmBtn = string.Format(link, "<i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> Write a Comment");
+
+                var showCommentsLink = Html.ActionLink(
+                    linkText: "{0}",
+                    actionName: "",
+                    controllerName: "",
+                    routeValues: new
+                    {
+                        PostId = @p.Id
+                    },
+                    htmlAttributes: new
+                    {
+                        @class = "ShowCommentsBtn"
+                    }).ToString();
+
+                var CommentsList = ViewBag.Comments as IEnumerable<Comment>;
+                int CommentsCount = CommentsList.Where(c => c.PostId == @p.Id).Count();
+
+                var ShowCommentsBtn = string.Format(
+                    showCommentsLink,
+                    "<i class=\"fa fa-comments\" aria-hidden=\"true\"></i> (<span id=\"commentsCount_" + @p.Id + "\">" + CommentsCount + "</span>) <span class=\"morecomments\" id=\"expandCollapseIcon_" + @p.Id + "\"></span>"
+                 );
+            }
+
+            <div style="display:inline-block; text-align:left">@Html.Raw(addCommentFrmBtn)</div>
+            <div style="display:inline-block; float:right">@Html.Raw(ShowCommentsBtn)</div>
+            <div style="clear:both"></div>
+
+            <div id="addCommentForm_@p.Id" class="addCommentForm">
+            @{
+                @Html.Partial("_AddComment", new ViewDataDictionary{
+                    { "p", p },
+                    { "UserId", ViewBag.UserId },
+                    { "Author",  ViewBag.Author }
+                })
+            }
+            </div>
+
+            @Html.Partial("_AddAjaxComment", new ViewDataDictionary{
+                    { "postId", p.Id },
+                    { "comments", ViewBag.Comments }
+                })
+        </div>
+    }
+
+</div>

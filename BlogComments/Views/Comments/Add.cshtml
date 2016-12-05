@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+<h3>Create a new Comment</h3>
+<div class="v-margin-20">
+    <form method="post" action="">
+        <input name="UserId" type="hidden" value="@ViewBag.UserId">
+        <input name="PostId" type="hidden" value="@ViewBag.PostId">
+        <table>
+            <tr>
+                <td>
+                    <label for="CommentTxt" class="sr-only">Comment text</label>
+                    <textarea name="CommentTxt" class="form-control" placeholder="Comment text" cols="100" raws="200"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td><input class="btn btn-lg btn-primary v-margin-20" type="submit" value="Save" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+

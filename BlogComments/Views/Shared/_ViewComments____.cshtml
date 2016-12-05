@@ -1,0 +1,27 @@
+﻿@using BlogComments.Models
+
+
+@{
+    int cnt = 0;
+}
+
+
+
+<div class="comments">
+    
+    @foreach (var c in ViewBag.Comments)
+    {
+        if (c.PostId == ViewBag.p.Id)
+        {
+            <div class="commentsItem">
+                <p><small class="small">@c.Date.ToString("dd/MM/yyyy HH:mm")</small></p>
+                <p>@c.CommentTxt</p>
+            </div>
+            cnt++;
+        }
+    }
+    @if (cnt == 0)
+    {
+        <!--<div>No comments</div>-->
+    }
+</div>

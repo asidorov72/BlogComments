@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Add";
+
+}
+
+<div class="v-margin-10">
+    @using (Ajax.BeginForm(
+        "AddAjaxComment",
+        "Comments",
+        new AjaxOptions { UpdateTargetId = "ajaxResultComments_" + ViewBag.p.Id }
+    ))
+    {
+        <input name="UserId" type="hidden" value="@ViewBag.UserId">
+        <input name="PostId" type="hidden" value="@ViewBag.p.Id">
+        
+            if (ViewBag.Author != null)
+            {
+                <input name="Author" type="hidden" value="@ViewBag.Author">
+            }
+       
+        <table>
+           
+            @if (ViewBag.Author == null)
+            {
+                <tr>
+                    <td>
+                        <label for="Author" class="sr-only">Author</label>
+                        <input type="text" class="form-control input-sm" name="Author" placeholder="Author" required="" autofocus="" />
+                    </td>
+                </tr>
+            }
+            
+            <tr>
+                <td>
+                    <label for="CommentTxt" class="sr-only">Comment text</label>
+                    <textarea name="CommentTxt" class="form-control input-sm" placeholder="Comment text" cols="50" raws="50"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="btn btn-sm btn-primary v-margin-10 input-sm AddCommentCloseBtn" type="button" value="Close" />
+                    <input class="btn btn-sm btn-primary v-margin-10 input-sm AddCommentSaveBtn" type="submit" value="Save a Comment" />
+                </td>
+            </tr>
+        </table>
+    }
+</div>
